@@ -1,0 +1,22 @@
+{
+  "leage": "LIGA DE FUTBOL",
+  "schedule": [
+    {
+      "round": 1,
+      "matches": [
+        {
+          "local": {
+            "id": "fbaba4cf-c05d-4ef1-801c-8f76ff9cffcf",
+            "name": "EQUIPO 2",
+            "random": 0.26494169561933645
+          },
+          "visit": {
+            "id": "753addbf-2cbb-4546-9b3e-680da0833b48",
+            "name": "EQUIPO 1",
+            "random": 0.8967284386068888
+          }
+        }
+      ]
+    }
+  ]
+}
