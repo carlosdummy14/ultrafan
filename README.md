@@ -11,8 +11,8 @@ pnpm install
 pnpm run dev
 ```
 
-![Create your League](image01.jpg)  
-![Schedule](image02.jpg)
+![Create your League](https://github.com/carlosdummy14/ultrafan/blob/main/image01.jpg)  
+![Schedule](https://github.com/carlosdummy14/ultrafan/blob/main/image01.jpg)
 
 TODO  
 💡 SPA  
