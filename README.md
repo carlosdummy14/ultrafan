@@ -4,7 +4,7 @@ An easy way to prepare the matches of your teams.
 
 Random matches divided by rounds.
 
-Just clone the repo and do...
+For now, just clone the repo and do...
 
 ```
 pnpm install
@@ -16,8 +16,9 @@ pnpm run dev
 
 ### TODO
 
+💡 Delete a team  
 💡 SPA  
-💡 PDF of league  
+💡 PDF to print  
 💡 Backend to admin the league
 
 - Scores
