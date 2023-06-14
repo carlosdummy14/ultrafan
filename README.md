@@ -16,9 +16,22 @@ pnpm run dev
 
 ### TODO
 
-💡 SPA  
-💡 PDF to print  
-💡 Backend to admin the league
+- 💡 SPA
 
-- Scores
-- Positions
+  - ❌ Add router
+  - ❌ Define pages
+
+- 💡 PDF to print
+- 💡 Backend to admin the league
+
+  - ❌ Scores
+  - ❌ Statistics
+
+- 💡 Clean all
+
+  - ❌ Components
+
+- 💡 Chore
+
+  - ✅ Delete team
+  - ❌ Change color of team without name

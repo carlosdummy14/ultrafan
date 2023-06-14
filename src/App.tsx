@@ -66,8 +66,6 @@ function App() {
       random: 0,
     }
     addTeam(newTeam)
-    const lastTeam = teamsContainer?.current?.lastElementChild
-    lastTeam?.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
   const handleRemoveTeam = (teamId: TeamId) => removeTeam(teamId)
@@ -127,6 +125,12 @@ function App() {
       })
     })
   }, [])
+
+  useEffect(() => {
+    const lastTeam = teamsContainer?.current?.lastElementChild
+    lastTeam?.scrollIntoView({ behavior: "smooth", block: "center" })
+    return () => {}
+  }, [teams.length])
 
   return (
     <ThemeProvider theme={darkTheme}>
