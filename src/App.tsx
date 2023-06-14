@@ -1,4 +1,7 @@
-import { AddCircleRounded as AddCircleIcon } from "@mui/icons-material"
+import {
+  AddCircleRounded as AddCircleIcon,
+  Delete as DeleteIcon,
+} from "@mui/icons-material"
 import {
   Alert,
   Box,
@@ -7,6 +10,7 @@ import {
   Container,
   CssBaseline,
   Grid,
+  IconButton,
   Paper,
   Stack,
   Table,
@@ -20,7 +24,7 @@ import {
   Typography,
   createTheme,
 } from "@mui/material"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { League, LeagueState, Team, TeamId, TeamState } from "./types"
 import { generateLeague } from "./utils"
 
@@ -36,9 +40,15 @@ function App() {
   const [leagueName, setLeagueName]: LeagueState = useState("")
   const [error, setError] = useState("")
   const [league, setLeague] = useState({} as League)
+  const teamsContainer = useRef(null)
 
   const addTeam = (newTeam: Team) =>
     setTeams((prevState: Team[]) => [...prevState, newTeam])
+
+  const removeTeam = (teamId: TeamId) =>
+    setTeams((prevState: Team[]) =>
+      prevState.filter((team) => team.id !== teamId)
+    )
 
   const changeTeamName = (teamId: TeamId, newName: string) => {
     setTeams((prevState: Team[]) => {
@@ -56,7 +66,11 @@ function App() {
       random: 0,
     }
     addTeam(newTeam)
+    const lastTeam = teamsContainer?.current?.lastElementChild
+    lastTeam?.scrollIntoView({ behavior: "smooth", block: "center" })
   }
+
+  const handleRemoveTeam = (teamId: TeamId) => removeTeam(teamId)
 
   const handleTeamChange = (ev: ChangeEvent<HTMLInputElement>) => {
     const { value: teamName, id: teamId } = ev.target
@@ -131,37 +145,64 @@ function App() {
             variant="outlined"
             onChange={handleLeagueChange}
             value={leagueName}
-            sx={{ mb: "1rem" }}
+            sx={{ mb: "0.5rem" }}
           />
           <Grid
             container
             justifyContent="space-evenly"
-            sx={{ backgroundColor: "transparent" }}
+            sx={{
+              backgroundColor: "transparent",
+              height: "60vh",
+            }}
+            overflow="auto"
+            ref={teamsContainer}
           >
             {teams.length >= 1 &&
               teams.map((team) => (
-                <Grid item xs={4} key={team.id}>
-                  <TextField
-                    id={team.id}
-                    label={`Team ${team.id.split("-")[0]}`}
-                    variant="outlined"
-                    onChange={handleTeamChange}
-                    value={team.name}
-                    fullWidth
-                    sx={{ mb: "1rem" }}
-                  />
+                <Grid
+                  item
+                  xs={5.5}
+                  md={5.5}
+                  key={team.id}
+                  sx={{
+                    backgroundColor: "#1E429F",
+                    borderRadius: "10px",
+                    mb: "0.5rem",
+                    maxHeight: "75px",
+                  }}
+                >
+                  <Stack direction="row" alignItems="center" sx={{ p: 1 }}>
+                    <TextField
+                      id={team.id}
+                      label={`Team ${team.id.split("-")[0]}`}
+                      variant="outlined"
+                      onChange={handleTeamChange}
+                      value={team.name}
+                    />
+                    <IconButton
+                      aria-label="remove"
+                      onClick={() => handleRemoveTeam(team.id)}
+                      sx={{
+                        color: "tomato",
+                        ml: 1,
+                      }}
+                      size="small"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Stack>
                 </Grid>
               ))}
-            {teams.length >= 1 && teams.length % 2 !== 0 && (
-              <Box
-                key="null"
-                component="div"
-                sx={{ p: 2, border: "1px dashed grey" }}
-              >
-                <Typography>A team rests every game day</Typography>
-              </Box>
-            )}
           </Grid>
+          <Box
+            key="null"
+            component="div"
+            sx={{ p: 1, border: "1px dashed grey" }}
+          >
+            {(teams.length >= 1 && teams.length % 2 !== 0 && (
+              <Typography>A team will rest every game day</Typography>
+            )) || <Typography>All teams can play </Typography>}
+          </Box>
           <Button
             variant="contained"
             color="success"

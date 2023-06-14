@@ -16,7 +16,6 @@ pnpm run dev
 
 ### TODO
 
-💡 Delete a team  
 💡 SPA  
 💡 PDF to print  
 💡 Backend to admin the league
