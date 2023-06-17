@@ -27,6 +27,7 @@ import {
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { League, LeagueState, Team, TeamId, TeamState } from "./types"
 import { generateLeague } from "./utils"
+import { createPDF } from "./utils/createPDF"
 
 const darkTheme = createTheme({
   palette: {
@@ -94,6 +95,10 @@ function App() {
       const response = generateLeague(leagueName, teams)
       setLeague(response)
     }
+  }
+
+  const handleCreatePDF = () => {
+    createPDF(league)
   }
 
   useEffect(() => {
@@ -227,6 +232,13 @@ function App() {
               {error}
             </Alert>
           )}
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleCreatePDF}
+          >
+            Generate PDF
+          </Button>
         </Stack>
       </Container>
       <Container>

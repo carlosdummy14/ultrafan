@@ -21,7 +21,7 @@ pnpm run dev
   - ❌ Add router
   - ❌ Define pages
 
-- 💡 PDF to print
+- 💡 PDF to print - 🛠 Working...
 - 💡 Backend to admin the league
 
   - ❌ Scores
@@ -31,7 +31,9 @@ pnpm run dev
 
   - ❌ Components
 
-- 💡 Chore
+- 💡 Chore and little things
 
   - ✅ Delete team
   - ❌ Change color of team without name
+  - ❌ Limit number of teams
+  - ❌ Reset league teams
