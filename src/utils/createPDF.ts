@@ -1,5 +1,8 @@
 import { BLANK_PDF, Template, generate } from "@pdfme/generator"
-import { League } from "../types"
+import { League, Match } from "../types"
+
+type RoundMatch = { roundmatch?: string }
+type NewInput = { leagueName?: string; round?: string }[]
 
 const createTemplate = (league: League) => {
   const roundWidth = 61
@@ -9,15 +12,21 @@ const createTemplate = (league: League) => {
   let lineToPrint = 0
   let columnToPrint = 0
 
-  const generateMatches = (matches, round, posX, posY) => {
+  const generateMatches = (
+    matches: Match[],
+    round: number,
+    posX: number,
+    posY: number
+  ) => {
     let matchPosY = posY - roundHeight
     let matchCounter = 1
-    let newMatchesInput = {}
-    const newMatch = matches.reduce((acum, match) => {
+    let newMatchesInput: RoundMatch = {}
+    const newMatch = matches.reduce((acum: RoundMatch, match: Match) => {
       newMatchesInput = {
         ...newMatchesInput,
         [`round${round}match${matchCounter}`]: `${match.home.name} Vs. ${match.guest.name}`,
       }
+
       return {
         ...acum,
         [`round${round}match${matchCounter++}`]: {
@@ -35,7 +44,7 @@ const createTemplate = (league: League) => {
     return [newMatch, newMatchesInput]
   }
 
-  let newInput = []
+  let newInput: NewInput = []
   let newPage = {}
 
   const roundsSchema = league.schedule.reduce((acum, round) => {
@@ -129,8 +138,13 @@ const createTemplate = (league: League) => {
 }
 
 export const createPDF = (league: League) => {
-  const { template, newInput }: { template: Template; newInput: Object } =
-    createTemplate(league)
+  const {
+    template,
+    newInput,
+  }: {
+    template: Template
+    newInput: NewInput
+  } = createTemplate(league)
 
   const inputs = [...newInput]
 

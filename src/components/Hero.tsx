@@ -1,0 +1,60 @@
+import { Box, Button, Container, TextField, Typography } from "@mui/material"
+import stadiumImage from "../assets/alexander-awerin-yXs8_r7VL4I-unsplash.jpg"
+import "./styles.css"
+
+function Hero() {
+  return (
+    <div
+      style={{
+        backgroundImage: `url("${stadiumImage}")`,
+      }}
+      className="hero"
+    >
+      <Container maxWidth="sm" sx={{ zIndex: 1 }}>
+        <Box
+          sx={{
+            textAlign: "center",
+            color: "#ffffff",
+          }}
+        >
+          <Typography
+            variant="h2"
+            component="h1"
+            className="title"
+            sx={{ marginBottom: 2, fontWeight: "bold" }}
+          >
+            Dive into the universe of tournaments!
+          </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ marginBottom: 2, textAlign: "left", fontWeight: "regular" }}
+          >
+            Design custom championships, schedule matches, manage teams , and
+            follow each game closely. Turn your sports dreams into reality and
+            create unforgettable memories. Join our community today. The next
+            great competition awaits you!
+          </Typography>
+          <TextField
+            variant="outlined"
+            placeholder="Enter your email to stay updated on the project"
+            sx={{ marginBottom: 2, backgroundColor: "#2196F3" }}
+            fullWidth
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              borderRadius: 1,
+              padding: "1rem 2rem",
+              textTransform: "none",
+            }}
+          >
+            Goool !!!
+          </Button>
+        </Box>
+      </Container>
+    </div>
+  )
+}
+export default Hero

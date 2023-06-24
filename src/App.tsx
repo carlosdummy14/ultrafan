@@ -28,6 +28,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { League, LeagueState, Team, TeamId, TeamState } from "./types"
 import { generateLeague } from "./utils"
 import { createPDF } from "./utils/createPDF"
+import Hero from "./components/Hero"
 
 const darkTheme = createTheme({
   palette: {
@@ -140,6 +141,7 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <Hero />
       <Container
         maxWidth="sm"
         disableGutters={true}
