@@ -28,7 +28,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { League, LeagueState, Team, TeamId, TeamState } from "./types"
 import { generateLeague } from "./utils"
 import { createPDF } from "./utils/createPDF"
-import Hero from "./components/Hero"
+import { Hero } from "./components/Hero"
 
 const darkTheme = createTheme({
   palette: {

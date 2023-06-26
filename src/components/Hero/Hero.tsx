@@ -1,5 +1,5 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material"
-import stadiumImage from "../assets/alexander-awerin-yXs8_r7VL4I-unsplash.jpg"
+import stadiumImage from "../../assets/alexander-awerin-yXs8_r7VL4I-unsplash.jpg"
 import "./styles.css"
 
 function Hero() {
@@ -38,7 +38,11 @@ function Hero() {
           <TextField
             variant="outlined"
             placeholder="Enter your email to stay updated on the project"
-            sx={{ marginBottom: 2, backgroundColor: "#2196F3" }}
+            sx={{
+              marginBottom: 2,
+              backgroundColor: "#219993",
+              borderRadius: 1,
+            }}
             fullWidth
           />
           <Button
@@ -47,7 +51,7 @@ function Hero() {
             sx={{
               borderRadius: 1,
               padding: "1rem 2rem",
-              textTransform: "none",
+              textTransform: "uppercase",
             }}
           >
             Goool !!!
