@@ -18,8 +18,8 @@ pnpm run dev
 
 - 💡 SPA
 
-  - ❌ Add router
-  - ❌ Define pages
+  - ✅ Add router
+  - ✅ Define pages
 
 - 💡 PDF to print - 🛠 Working...
 - 💡 Backend to admin the league
@@ -27,7 +27,7 @@ pnpm run dev
   - ❌ Scores
   - ❌ Statistics
 
-- 💡 Clean all
+- 💡 Clean all - 🛠 Working...
 
   - ❌ Components
 

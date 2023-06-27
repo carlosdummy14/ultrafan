@@ -1,6 +1,7 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material"
 import stadiumImage from "../../assets/alexander-awerin-yXs8_r7VL4I-unsplash.jpg"
 import "./styles.css"
+import { Link } from "wouter"
 
 function Hero() {
   return (
@@ -56,6 +57,19 @@ function Hero() {
           >
             Goool !!!
           </Button>
+          <Link to="/newleague">
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{
+                borderRadius: 1,
+                padding: "1rem 2rem",
+                textTransform: "uppercase",
+              }}
+            >
+              Try a kick
+            </Button>
+          </Link>
         </Box>
       </Container>
     </div>
