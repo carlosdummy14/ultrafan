@@ -35,8 +35,11 @@ function Hero() {
             follow each game closely. Turn your sports dreams into reality and
             create unforgettable memories. Join our community today. The next
             great competition awaits you!
+            <br />
+            <strong>See you soon!!</strong>
           </Typography>
           <TextField
+            disabled
             variant="outlined"
             placeholder="Enter your email to stay updated on the project"
             sx={{
@@ -46,30 +49,41 @@ function Hero() {
             }}
             fullWidth
           />
-          <Button
-            variant="contained"
-            color="primary"
+          <Box
             sx={{
-              borderRadius: 1,
-              padding: "1rem 2rem",
-              textTransform: "uppercase",
+              textAlign: "center",
+              color: "#ffffff",
+              display: "flex",
+              gap: "10px",
+              justifyContent: "center",
             }}
           >
-            Goool !!!
-          </Button>
-          <Link to="/newleague">
             <Button
+              disabled
               variant="contained"
-              color="secondary"
+              color="primary"
               sx={{
                 borderRadius: 1,
                 padding: "1rem 2rem",
                 textTransform: "uppercase",
               }}
             >
-              Try a kick
+              Goool !!!
             </Button>
-          </Link>
+            <Link to="/newleague">
+              <Button
+                variant="contained"
+                color="secondary"
+                sx={{
+                  borderRadius: 1,
+                  padding: "1rem 2rem",
+                  textTransform: "uppercase",
+                }}
+              >
+                Try a kick
+              </Button>
+            </Link>
+          </Box>
         </Box>
       </Container>
     </div>
