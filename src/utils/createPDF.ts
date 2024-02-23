@@ -18,13 +18,20 @@ const createTemplate = (league: League) => {
     posX: number,
     posY: number
   ) => {
-    let matchPosY = posY - roundHeight
+    const matchPosY = posY - roundHeight
     let matchCounter = 1
     let newMatchesInput: RoundMatch = {}
     const newMatch = matches.reduce((acum: RoundMatch, match: Match) => {
+      const noPlayTeam =
+        (match.home.name === "NO PLAY" && match.guest.name) ||
+        (match.guest.name === "NO PLAY" && match.home.name) ||
+        ""
       newMatchesInput = {
         ...newMatchesInput,
-        [`round${round}match${matchCounter}`]: `${match.home.name} Vs. ${match.guest.name}`,
+        [`round${round}match${matchCounter}`]:
+          noPlayTeam !== ""
+            ? `${noPlayTeam}`
+            : `${match.home.name} Vs. ${match.guest.name}`,
       }
 
       return {
@@ -34,8 +41,8 @@ const createTemplate = (league: League) => {
           position: { x: posX, y: matchPosY + roundHeight * matchCounter },
           width: roundWidth,
           height: roundHeight,
-          backgroundColor: "#ff0",
-          fontSize: 9,
+          backgroundColor: noPlayTeam === "" ? "#ff0" : "#999",
+          fontSize: 10,
           alignment: "center",
         },
       }

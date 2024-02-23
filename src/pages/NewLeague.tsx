@@ -4,7 +4,6 @@ import {
 } from "@mui/icons-material"
 import {
   Alert,
-  Box,
   Button,
   Card,
   Container,
@@ -97,13 +96,9 @@ const NewLeague = () => {
     const dataExample = [
       "Atlas",
       "América",
-      "Galaxy LA",
-      "Atlanta United",
       "Barcelona",
       "Real Madrid",
       "Juventus",
-      "Milan",
-      "Arsenal",
       "Manchester City",
     ]
     dataExample.forEach((team) => {
@@ -135,89 +130,104 @@ const NewLeague = () => {
             value={leagueName}
             sx={{ mb: "0.5rem" }}
           />
-          <Grid
-            container
-            justifyContent="space-evenly"
-            sx={{
-              backgroundColor: "transparent",
-              height: "60vh",
-            }}
-            overflow="auto"
-            ref={teamsContainer}
-          >
-            {teams.length >= 1 &&
-              teams.map((team) => (
-                <Grid
-                  item
-                  xs={5.5}
-                  md={5.5}
-                  key={team.id}
-                  sx={{
-                    backgroundColor: "#1E429F",
-                    borderRadius: "10px",
-                    mb: "0.5rem",
-                    maxHeight: "75px",
-                  }}
-                >
-                  <Stack direction="row" alignItems="center" sx={{ p: 1 }}>
-                    <TextField
-                      id={team.id}
-                      label={`Team ${team.id.split("-")[0]}`}
-                      variant="outlined"
-                      onChange={handleTeamChange}
-                      value={team.name}
-                    />
-                    <IconButton
-                      aria-label="remove"
-                      onClick={() => handleRemoveTeam(team.id)}
-                      sx={{
-                        color: "tomato",
-                        ml: 1,
-                      }}
-                      size="small"
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Stack>
-                </Grid>
-              ))}
-          </Grid>
-          <Box
-            key="null"
-            component="div"
-            sx={{ p: 1, border: "1px dashed grey" }}
-          >
-            {(teams.length >= 1 && teams.length % 2 !== 0 && (
-              <Typography>A team will rest every game day</Typography>
-            )) || <Typography>All teams can play </Typography>}
-          </Box>
-          <Button
-            variant="contained"
-            color="success"
-            startIcon={<AddCircleIcon />}
-            onClick={handleAddTeam}
-          >
-            Add team
-          </Button>
-          <Button
-            variant="contained"
-            disabled={teams.length < 2}
-            onClick={handleGenerateLeague}
-          >
-            Generate
-          </Button>
-          {error !== "" && (
-            <Alert variant="filled" severity="error" sx={{ width: "100%" }}>
-              {error}
+          <div style={{ border: "1px solid white", padding: "5px" }}>
+            <Grid
+              container
+              justifyContent="space-evenly"
+              sx={{
+                backgroundColor: "transparent",
+                height: "55vh",
+              }}
+              overflow="auto"
+              ref={teamsContainer}
+            >
+              {teams.length >= 1 &&
+                teams.map((team) => (
+                  <Grid
+                    item
+                    xs={5.5}
+                    md={5.5}
+                    key={team.id}
+                    sx={{
+                      backgroundColor: "#1E429F",
+                      borderRadius: "10px",
+                      mb: "0.5rem",
+                      maxHeight: "75px",
+                    }}
+                  >
+                    <Stack direction="row" alignItems="center" sx={{ p: 1 }}>
+                      <TextField
+                        id={team.id}
+                        label={`Team ${team.id.split("-")[0]}`}
+                        variant="outlined"
+                        onChange={handleTeamChange}
+                        value={team.name}
+                        fullWidth
+                      />
+                      <IconButton
+                        aria-label="remove"
+                        onClick={() => handleRemoveTeam(team.id)}
+                        sx={{
+                          color: "tomato",
+                          ml: 1,
+                        }}
+                        size="small"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Stack>
+                  </Grid>
+                ))}
+            </Grid>
+          </div>
+          {error !== "" ? (
+            <Alert
+              variant="filled"
+              severity="error"
+              sx={{ border: "1px dashed grey" }}
+            >
+              <Typography>{error}</Typography>
+            </Alert>
+          ) : (
+            <Alert
+              key="null"
+              severity="info"
+              sx={{ border: "1px dashed grey" }}
+            >
+              {(teams.length >= 1 && teams.length % 2 !== 0 && (
+                <Typography>A team will rest every game day</Typography>
+              )) || <Typography>All teams can play </Typography>}
             </Alert>
           )}
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleCreatePDF}
+          <Stack
+            spacing={2}
+            direction="row"
+            justifyContent="flex-end"
+            flexWrap="wrap"
           >
-            Generate PDF
-          </Button>
+            <Button
+              variant="contained"
+              color="success"
+              startIcon={<AddCircleIcon />}
+              onClick={handleAddTeam}
+            >
+              Add team
+            </Button>
+            <Button
+              variant="contained"
+              disabled={teams.length < 2}
+              onClick={handleGenerateLeague}
+            >
+              Generate
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleCreatePDF}
+            >
+              Generate PDF
+            </Button>
+          </Stack>
         </Stack>
       </Container>
       <Container>
